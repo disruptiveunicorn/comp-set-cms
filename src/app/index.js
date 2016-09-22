@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, browserHistory } from 'react-router';
 import ReduxPromise from 'redux-promise';
+import ReduxThunk from 'redux-thunk';
 
 import reducers from './reducers';
 import routes from './routes'
@@ -11,7 +12,7 @@ import routes from './routes'
 // for bundling your styles
 import './bundle.scss';
 
-const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+const createStoreWithMiddleware = applyMiddleware(ReduxThunk, ReduxPromise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
