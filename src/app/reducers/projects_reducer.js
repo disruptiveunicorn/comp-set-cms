@@ -1,4 +1,4 @@
-import { FETCH_PROJECTS } from '../actions/index';
+import { FETCH_PROJECTS } from '../actions/types';
 
 const INITIAL_STATE = { all: [], post: null };
 

@@ -1,6 +1,5 @@
-export const FETCH_PROJECTS = 'FETCH_PROJECTS';
 import firebase from 'firebase';
-import FIREBASE_CONFIG from '../config';
+import { FETCH_PROJECTS } from './types';
 
 
 const database = app.database();
