@@ -29,6 +29,8 @@ class App extends Component {
              aria-haspopup="true" aria-expanded="false">
             {currentUser.email} <span className="caret"></span></a>
           <ul className="dropdown-menu">
+            <li><Link to="/projects">Projects</Link></li>
+            <li role="separator" className="divider"></li>
             <li><Link to="/profile">Profile</Link></li>
             <li role="separator" className="divider"></li>
             <li><Link to="/logout" onClick={this.logOut}>Logout</Link></li>
@@ -57,9 +59,7 @@ class App extends Component {
               <Link to="/" className="navbar-brand">Property Viewer</Link>
             </div>
             <nav className="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-              <ul className="nav navbar-nav">
-                <li><Link to="/projects">My Projects</Link></li>
-              </ul>
+              
               <ul className="nav navbar-nav navbar-right">
                 {this.renderUserMenu(this.props.currentUser)}
               </ul>
