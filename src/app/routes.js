@@ -9,6 +9,7 @@ import UserRegister from './components/user/register';
 import UserProfile from './components/user/profile';
 import ResetPassword from './components/user/reset_password';
 import Projects from './components/user/projects';
+import NewProject from './components/user/new_project'
 
 export default (
   <Route path="/" component={App}>
@@ -19,5 +20,6 @@ export default (
     <Route path="/reset" component={ResetPassword} />
     <Route path="/profile" component={UserProfile} />
     <Route path="/projects" component={Projects} />
+    <Route path="/new_project" component={NewProject} />
   </Route>
 );
