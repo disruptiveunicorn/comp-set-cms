@@ -1,18 +1,16 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {changePassword} from '../../actions/firebase_actions';
+import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { changePassword } from '../../actions/firebase_actions';
 
 class ChangePassword extends Component {
 
   constructor(props) {
-
     super(props);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.state = {
       message: ''
     }
-
   }
 
   onFormSubmit(event) {
@@ -47,15 +45,12 @@ class ChangePassword extends Component {
           <label htmlFor="repeatPassword"> Repeat Password: </label>
           <input type="password" className="form-control"
                  name="repeatPassword" ref="repeatPassword" id="repeatPassword"/>
-
         </div>
         <button type="submit" className="btn btn-primary">Change Password</button>
       </form>
     )
   }
-
 }
-
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({changePassword}, dispatch);
@@ -63,7 +58,6 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {currentUser: state.currentUser};
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChangePassword);

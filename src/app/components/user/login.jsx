@@ -31,11 +31,9 @@ class UserLogin extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-
     var email = this.refs.email.value;
     var password = this.refs.password.value;
     this.props.loginUser({email: email, password: password}).then(data => {
-
         if (data.payload.errorCode)
           this.setState({message: data.payload.errorMessage})
         else
@@ -43,7 +41,6 @@ class UserLogin extends Component {
 
       }
     )
-
   }
 
   render() {
@@ -80,10 +77,8 @@ class UserLogin extends Component {
            */}
         </form>
       </div>
-
     )
   }
-
 }
 
 function mapDispatchToProps(dispatch) {
@@ -96,7 +91,6 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {currentUser: state.currentUser};
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserLogin);
