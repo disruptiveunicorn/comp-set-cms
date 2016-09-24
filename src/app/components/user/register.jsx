@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { registerUser } from '../../actions/firebase_actions';
+import { addUserToDatabase } from '../../actions/index';
 
 class UserRegister extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class UserRegister extends Component {
         if (data.payload.errorCode)
           this.setState({message: data.payload.errorMessage});
         else
+          this.props.addUserToDatabase(this.props.currentUser.uid, this.props.currentUser.email);
           browserHistory.push('/profile');
 
       }
@@ -55,7 +57,8 @@ class UserRegister extends Component {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    registerUser
+    registerUser,
+    addUserToDatabase
   }, dispatch);
 }
 
