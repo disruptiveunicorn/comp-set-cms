@@ -41,4 +41,4 @@ jspm_packages
 .idea/
 
 # Firebase Config
-./src/app/config.js
+src/app/config.js
