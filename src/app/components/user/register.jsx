@@ -1,18 +1,16 @@
-import React, {Component } from 'react';
+import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { registerUser } from '../../actions/firebase_actions';
 
 class UserRegister extends Component {
-
   constructor(props) {
     super(props);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.state = {
       message: ''
     }
-
   }
 
   onFormSubmit(event) {
@@ -29,7 +27,6 @@ class UserRegister extends Component {
 
       }
     )
-
   }
 
   render() {

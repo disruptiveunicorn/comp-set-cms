@@ -10,21 +10,18 @@ class ResetPassword extends Component {
       message: ''
     }
     this.onFormSubmit = this.onFormSubmit.bind(this);
-
   }
 
   onFormSubmit(event) {
     event.preventDefault();
     var email = this.refs.email.value;
     this.props.resetPasswordEmail(email).then(data => {
-
-      if (data.payload.errorCode)
+      if (data.payload.errorCode) {
         this.setState({message: data.payload.errorMessage})
-      else
+      } else {
         this.setState({message: "Please see your email!"})
-
+      }
     });
-
   }
 
   render() {
