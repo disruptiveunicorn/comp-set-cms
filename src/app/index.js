@@ -13,9 +13,11 @@ import routes from './routes'
 import './bundle.scss';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxThunk, ReduxPromise)(createStore);
+// Redux DevTools
+const store = createStoreWithMiddleware(reducers, window.devToolsExtension && window.devToolsExtension());
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
     <Router history={browserHistory} routes={routes}>
     </Router>
   </Provider>
