@@ -14,7 +14,10 @@ class Projects extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchProjects();
+    this.props.fetchUser().then(data => {
+      this.setState( {currentUser: data.payload} )
+      this.props.fetchProjects(this.props.currentUser.uid)
+    })
   }
 
   renderProjects() {
