@@ -25,7 +25,7 @@ class UserRegister extends Component {
           this.setState({message: data.payload.errorMessage});
         else
           this.props.addUserToDatabase(this.props.currentUser.uid, this.props.currentUser.email);
-          browserHistory.push('/profile');
+          browserHistory.push('/projects');
 
       }
     )

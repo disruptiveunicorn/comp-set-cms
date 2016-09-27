@@ -4,10 +4,10 @@ import { CREATE_PROJECT } from './types';
 import { ADD_USER_TO_DATABASE } from './types';
 import { firebaseDb } from '../utils/firebase'
 
-const projects = firebaseDb.ref('projects');
 const users = firebaseDb.ref('users');
 
-export function fetchProjects() {
+export function fetchProjects(userUID) {
+  let projects = firebaseDb.ref('users/' + userUID + '/projects')
   return dispatch => {
     projects.on('value', snapshot => {
       dispatch({
@@ -18,15 +18,9 @@ export function fetchProjects() {
   }
 }
 
-export function createProject() {
-  return dispatch => {
-    projects.on('value', snapshot => {
-      dispatch({
-        type: CREATE_PROJECT,
-        payload: snapshot.val()
-      })
-    })
-  }
+export function createProject(userUID, title, location) {
+  let projects = firebaseDb.ref('users/' + userUID + '/projects/')
+  return dispatch => projects.push( {"title": title, "location": location} );
 }
 
 export function addUserToDatabase(userUID, email) {

@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
 import firebase from '../../utils/firebase';
 import { fetchProjects } from '../../actions/index';
+import { fetchUser } from '../../actions/firebase_actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import Loading from '../helpers/loading';
-import { fetchUser } from '../../actions/firebase_actions';
+import _ from 'lodash';
 
 class Projects extends Component {
   constructor(props) {
     super(props);
-    this.props.fetchUser();
   }
 
   componentWillMount() {
-    this.props.fetchProjects();
+    this.props.fetchUser().then(data => {
+      this.setState( {currentUser: data.payload} )
+      this.props.fetchProjects(this.props.currentUser.uid)
+    })
   }
 
   renderProjects() {
-    return this.props.projects.map((project) => {
+    return _.map(this.props.projects, function(project) {
       return (
-        <li className='list-group-item' key={project.id}>
-          <strong>{project.name}</strong>
+        <li className='list-group-item' key={project.title}>
+          <strong>{project.title}</strong>
         </li>
       )
     })
@@ -30,6 +33,19 @@ class Projects extends Component {
   render() {
     if (!this.props.currentUser) {
       return <Loading/>
+    }
+
+    if (!this.props.projects) {
+      return (
+        <div>
+          <h3>Projects
+            <Link to="/new_project" className="btn btn-default pull-right">New Project</Link>
+          </h3>
+          <div>
+            You do not currently have any projects.
+          </div>
+        </div>
+      )
     }
 
     return (
