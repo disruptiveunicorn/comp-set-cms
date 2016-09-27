@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import firebase from '../../utils/firebase';
 import { fetchProjects } from '../../actions/index';
+import { fetchUser } from '../../actions/firebase_actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import Loading from '../helpers/loading';
-import { fetchUser } from '../../actions/firebase_actions';
+import _ from 'lodash';
 
 class Projects extends Component {
   constructor(props) {
     super(props);
-    this.props.fetchUser();
   }
 
   componentWillMount() {
@@ -21,10 +21,10 @@ class Projects extends Component {
   }
 
   renderProjects() {
-    return this.props.projects.map((project) => {
+    return _.map(this.props.projects, function(project) {
       return (
-        <li className='list-group-item' key={project.id}>
-          <strong>{project.name}</strong>
+        <li className='list-group-item' key={project.title}>
+          <strong>{project.title}</strong>
         </li>
       )
     })
