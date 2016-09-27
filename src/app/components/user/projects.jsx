@@ -32,6 +32,19 @@ class Projects extends Component {
       return <Loading/>
     }
 
+    if (!this.props.projects) {
+      return (
+        <div>
+          <h3>Projects
+            <Link to="/new_project" className="btn btn-default pull-right">New Project</Link>
+          </h3>
+          <div>
+            You do not currently have any projects.
+          </div>
+        </div>
+      )
+    }
+
     return (
       <div>
         <h3>Projects
