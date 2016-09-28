@@ -8,7 +8,8 @@ import {
   UPDATE_FIREBASE_USER,
   CHANGE_FIREBASE_USER_PASSWORD,
   FIREBASE_PASSWORD_RESET_EMAIL,
-  LOGOUT_FIREBASE_USER
+  LOGOUT_FIREBASE_USER,
+  FETCH_DATABASE_REF
 } from './types';
 
 export function loginWithProvider(provider) {

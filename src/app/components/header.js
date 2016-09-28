@@ -3,12 +3,12 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchUser, logoutUser }  from '../actions/firebase_actions';
-
+import { createProject } from '../actions/index';
 class Header extends Component {
 
   constructor(props) {
     super(props);
-
+    
     this.props.fetchUser();
     this.logOut = this.logOut.bind(this);
   }

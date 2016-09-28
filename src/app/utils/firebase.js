@@ -5,6 +5,7 @@ export const firebaseApp = firebase.initializeApp(FIREBASE_CONFIG);
 export const firebaseAuth = firebaseApp.auth();
 export const firebaseDb = firebaseApp.database();
 
+
 var FireBaseTools = {
 
   /**
@@ -189,6 +190,10 @@ var FireBaseTools = {
    */
   getDatabaseReference: (path) => {
     return firebaseDb.ref(path);
+  },
+
+  getDataChild: (path) => {
+    return firebaseDb.ref().child(path);
   }
 };
 

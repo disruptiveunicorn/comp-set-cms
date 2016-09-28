@@ -6,8 +6,8 @@ import { firebaseDb } from '../utils/firebase'
 
 const users = firebaseDb.ref('users');
 
-export function fetchProjects(userUID) {
-  let projects = firebaseDb.ref('users/' + userUID + '/projects')
+export function fetchProjects() {
+  let projects = firebaseDb.ref().child('projects');
   return dispatch => {
     projects.on('value', snapshot => {
       dispatch({
@@ -18,9 +18,13 @@ export function fetchProjects(userUID) {
   }
 }
 
-export function createProject(userUID, title, location) {
-  let projects = firebaseDb.ref('users/' + userUID + '/projects/')
-  return dispatch => projects.push( {"title": title, "location": location} );
+export function createProject(p) {
+  let project = firebaseDb.ref().child('projects');
+  return dispatch => project.push(p);
+}
+
+export function deleteProject(key) {
+  return dispatch => Posts.child(key).remove();
 }
 
 export function addUserToDatabase(userUID, email) {
