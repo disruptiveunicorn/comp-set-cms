@@ -18,8 +18,12 @@ class NewProject extends Component {
   }
 
   onSubmit(props) {
-    // Second and third arguments are mock data to be hooked up with Redux Form
-    this.props.createProject(this.props.currentUser.uid, "Office Building 6", "New York").then(() => {
+    const uid = this.props.currentUser.uid;
+    const title = this.props.fields.title.value;
+    const location = this.props.fields.location.value;
+    const description = this.props.fields.description.value;
+
+    this.props.createProject(uid, title, location, description).then(() => {
       this.context.router.push('/projects')
     })
   }
@@ -30,22 +34,25 @@ class NewProject extends Component {
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <h3>Create a New Project</h3>
-        <div>
+        <div className={`form-group ${title.touched && title.invalid ? 'has-danger' : ''}`}>
           <label>Title</label>
-          <input type="text" className="form-control" />
+          <input type="text" className="form-control" {...title} />
           <div className="text-help">
+            {title.touched ? title.error : ''}
           </div>
         </div>
-        <div>
+        <div className={`form-group ${location.touched && location.invalid ? 'has-danger' : ''}`}>
           <label>Location</label>
-          <input type="text" className="form-control" />
+          <input type="text" className="form-control" {...location} />
           <div className="text-help">
+            {location.touched ? location.error : ''}
           </div>
         </div>
         <div>
           <label>Description</label>
-          <textarea className="form-control" />
+          <textarea className="form-control" {...description} />
           <div className="text-help">
+            {description.touched ? description.error : ''}
           </div>
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
@@ -53,6 +60,22 @@ class NewProject extends Component {
       </form>
     )
   }
+}
+
+function validate(values) {
+  const errors = {};
+
+  if (!values.title) {
+    errors.title = "Enter a username";
+  }
+  if (!values.description) {
+    errors.description = "Enter description";
+  }
+  if (!values.location) {
+    errors.location = "Enter location";
+  }
+
+  return errors;
 }
 
 function mapDispatchToProps(dispatch) {
@@ -69,5 +92,6 @@ function mapStateToProps(state) {
 
 export default reduxForm({
   form: 'NewProject',
-  fields: ['title', 'location', 'description']
+  fields: ['title', 'location', 'description'],
+  validate
 }, mapStateToProps, mapDispatchToProps)(NewProject);
