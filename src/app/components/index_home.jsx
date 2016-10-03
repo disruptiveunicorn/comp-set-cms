@@ -1,7 +1,9 @@
 import React from 'react';
-
+import Login from './user/login'
 export default () => {
   return (
-    <div>Home Page</div>
+    <div>
+      <Login />
+    </div>
   );
 };
