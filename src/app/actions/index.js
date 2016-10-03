@@ -18,9 +18,9 @@ export function fetchProjects(userUID) {
   }
 }
 
-export function createProject(userUID, title, location) {
-  let projects = firebaseDb.ref('users/' + userUID + '/projects/')
-  return dispatch => projects.push( {"title": title, "location": location} );
+export function createProject(userUID, title, location, description) {
+  let projects = firebaseDb.ref('users/' + userUID + '/projects')
+  return dispatch => projects.push( {"title": title, "location": location, "description": description} );
 }
 
 export function addUserToDatabase(userUID, email) {
